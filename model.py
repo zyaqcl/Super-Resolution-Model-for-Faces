@@ -398,7 +398,7 @@ class SR3():
     return result_SR
 
   def save(self, save_path):
-    network = self.sr3.model
+    network = self.sr3
     if isinstance(self.sr3, nn.DataParallel):
       network = network.module
     state_dict = network.state_dict()
@@ -407,8 +407,7 @@ class SR3():
     torch.save(state_dict, save_path)
 
   def load(self, load_path):
-    network = self.sr3.model
-    #network = self.sr3
+    network = self.sr3
     if isinstance(self.sr3, nn.DataParallel):
       network = network.module
     network.load_state_dict(torch.load(load_path))
